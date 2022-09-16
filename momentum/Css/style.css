@@ -1,0 +1,15 @@
+/* body {
+background-color: powderblue;
+}
+
+.active { 
+    color: white;
+} */
+
+.main{
+    color: black;
+}
+
+.hidden {
+    display: none;
+}
