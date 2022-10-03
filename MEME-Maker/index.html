@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEME-Maker</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body class="body">
+    <div style="display: flex;flex-direction: column;">
+    <canvas></canvas>
+
+    <input id="line-width" type="range" min="1" max="10" value="5" step="0.5" style="width: 10rem;"/>
+    <input type="color" id="color" />
+    <div style="display: flex; flex-direction: row; justify-content: space-around;">
+    <div class="color-option" style="background-color: #F4ACAF;" data-color="#F4ACAF"></div> 
+    <div class="color-option" style="background-color: #EFF0D0;" data-color="#EFF0D0"></div> 
+    <div class="color-option" style="background-color: #E877A2;" data-color="#E877A2"></div> 
+    <div class="color-option" style="background-color: #59B7B7;" data-color="#59B7B7"></div> 
+    <div class="color-option" style="background-color: #92E7E0;" data-color="#92E7E0"></div>
+    </div>
+    <div>
+        <button id="mode-btn">Fill</button>
+        <button id="reset-btn">Reset</button>
+        <button id="erase-btn">Earse</button>
+        <input type="file" accept="image/*" id="file" />
+        <input type="text" placeholder="Write and then double click" id="text">
+        <button id="save">Save image</button>
+    </div>
+</div>
+
+
+    <script src="app.js"></script>
+</body>
+</html>
