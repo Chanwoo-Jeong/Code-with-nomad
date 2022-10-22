@@ -34,7 +34,8 @@ function Home () {
             {loding ? <strong>loading ....</strong> : 
             <ol>
             {movie.map((item)=>{return <Movie
-            rnum={item.rnum}
+            key={item.rnum}
+            id={item.rnum}
             movieNm={item.movieNm}
             audiAcc={item.audiAcc}
             rankInten={item.rankInten}

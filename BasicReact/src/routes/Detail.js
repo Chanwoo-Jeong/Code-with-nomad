@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import{useParams} from "react-router-dom"
+import{Link, useParams} from "react-router-dom"
 
 function Detail () {
     const [loading, setLoding] = useState(true)
@@ -32,6 +32,8 @@ function Detail () {
             </li>
             
         </ol>}
+        <button onClick={()=> window.history.back()}>뒤로가기</button>
+        <Link to={"/"} ><button>홈</button> </Link>
     </div>
 }
 
