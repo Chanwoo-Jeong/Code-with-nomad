@@ -21,7 +21,7 @@ function NomadTodo (){
 
     return (
     <div>
-        <h1>NomadTodo {todos.length} </h1>
+        <h1>TodoList {todos.length} </h1>
       <form onSubmit={onSubmit}>
         <input type="text" placeholder="Write to do .." value={todo} onChange={onChange}/>
         <button>Submit</button>

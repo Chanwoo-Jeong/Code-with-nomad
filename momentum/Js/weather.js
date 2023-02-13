@@ -1,5 +1,7 @@
 const API_KEY = 'b1581c63833eb15d2ba7179d359626a0'
 
+
+
 function onGeoOK(supereme){
     const lat = supereme.coords.latitude;
     const lng = supereme.coords.longitude;

@@ -10,12 +10,12 @@ import Todo from './Todo';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <div>
-    {/* <App />
-    <BlogList /> */}
-    {/* <Todo/> */}
+    {/* <App /> */}
+    <BlogList />
+    <Todo/>
     {/* <NomadTodo /> */}
-    {/* <Cointracker/> */}
-    {<MovieApp />}
+    <Cointracker/>
+    <MovieApp />
     </div>
 );
 
