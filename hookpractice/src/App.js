@@ -5,7 +5,9 @@ import useTabs from "./Hooks/useTabs";
 import useTitle from "./Hooks/useTitle";
 import useClick from "./Hooks/useClick";
 import useConfirm from "./Hooks/useConfirm";
-import {  useEffect, useRef, useState } from "react";
+import usePreventLeave from "./Hooks/usePreventLeave";
+import useBeforeLeave from "./Hooks/useBeforeLeave";
+import { useEffect, useRef, useState } from "react";
 
 const content = [
   {
@@ -21,8 +23,6 @@ const content = [
 
 
 function App() {
-
-
   //useInput.js
   const [count, setCount] = useState(0);
   const maxLen = (value) => value.length <= 10;
@@ -54,13 +54,19 @@ function App() {
   const title = useClick(sayBye);
 
   //useConfirm.js
-  const deleteWorld = () => console.log("Deleting the world...")
-  const abort = () => console.log("rejection")
-  const confirmDelete = useConfirm("Are you sure?" , deleteWorld , abort)
+  const deleteWorld = () => console.log("Deleting the world...");
+  const abort = () => console.log("rejection");
+  const confirmDelete = useConfirm("Are you sure?", deleteWorld, abort);
+
+  //usePreventLeave.js
+  const { enablePrevent, disablePrevent } = usePreventLeave();
+
+  //useBeforeLeave.js
+  const begForlife = () => console.log("Plz Don't Leave");
+  useBeforeLeave(begForlife);
 
   return (
     <div className="App">
-      
       <h1>useInput</h1>
       <h3>Hello {count}</h3>
       <button onClick={() => setCount(count + 1)}>increase</button>
@@ -83,7 +89,6 @@ function App() {
       </div>
       <div>
         <h1>UseEffect</h1>
-
         <button onClick={() => setNumber(number + 1)}>{number}</button>
         <button onClick={() => setANumber(anumber + 1)}>{anumber}</button>
       </div>
@@ -95,6 +100,11 @@ function App() {
       <div>
         <h1>UseConfirm</h1>
         <button onClick={confirmDelete}>Delete the world</button>
+      </div>
+      <div>
+        <h1>usePreventLeave</h1>
+        <button onClick={enablePrevent}>Protect</button>
+        <button onClick={disablePrevent}>Unprotect</button>
       </div>
     </div>
   );
