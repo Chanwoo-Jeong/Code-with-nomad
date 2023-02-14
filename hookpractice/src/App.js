@@ -7,6 +7,8 @@ import useClick from "./Hooks/useClick";
 import useConfirm from "./Hooks/useConfirm";
 import usePreventLeave from "./Hooks/usePreventLeave";
 import useBeforeLeave from "./Hooks/useBeforeLeave";
+import useFadeIn from "./Hooks/useFadeIn";
+import useNetwork from "./Hooks/useNetwork";
 import { useEffect, useRef, useState } from "react";
 
 const content = [
@@ -19,8 +21,6 @@ const content = [
     content: "Im the content of the section2",
   },
 ];
-
-
 
 function App() {
   //useInput.js
@@ -65,13 +65,24 @@ function App() {
   const begForlife = () => console.log("Plz Don't Leave");
   useBeforeLeave(begForlife);
 
+  //useFadeIn.js
+  const fadeInH1 = useFadeIn(2);
+  const fadeInP = useFadeIn(5);
+
+  //useNetwork.js
+  const handleNetworkChange = (online) => {
+    console.log(online ? "we are online" : "we are offline");
+  };
+  const onLine = useNetwork(handleNetworkChange);
+
   return (
     <div className="App">
-      <h1>useInput</h1>
-      <h3>Hello {count}</h3>
-      <button onClick={() => setCount(count + 1)}>increase</button>
-      <button onClick={() => setCount(count - 1)}>decrease</button>
-
+      <div>
+        <h1>useInput</h1>
+        <h3>Hello {count}</h3>
+        <button onClick={() => setCount(count + 1)}>increase</button>
+        <button onClick={() => setCount(count - 1)}>decrease</button>
+      </div>
       <div>
         <input placeholder="Name" {...name} />
       </div>
@@ -105,6 +116,13 @@ function App() {
         <h1>usePreventLeave</h1>
         <button onClick={enablePrevent}>Protect</button>
         <button onClick={disablePrevent}>Unprotect</button>
+      </div>
+      <div>
+        <h1 {...fadeInH1}>useFadeIn</h1>
+        <p {...fadeInP}>lorem ipsum lalabula collecting....</p>
+      </div>
+      <div>
+        <h1>{onLine ? "Online" : "Offline"}</h1>
       </div>
     </div>
   );
