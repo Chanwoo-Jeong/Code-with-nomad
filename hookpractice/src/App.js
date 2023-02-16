@@ -12,6 +12,7 @@ import useNetwork from "./Hooks/useNetwork";
 import useScroll from "./Hooks/useScroll";
 import wallpaper from "./images/wallpaper.jpg";
 import useFullscreen from "./Hooks/useFullscreen";
+import useNotification from "./Hooks/useNotification";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -25,6 +26,8 @@ const content = [
     content: "Im the content of the section2",
   },
 ];
+
+
 
 function App() {
   //useInput.js
@@ -85,6 +88,9 @@ function App() {
   //useFullscreen.js
   const { element, triggerFull, exitFUll } = useFullscreen();
 
+  //useNotification.js
+  const triggerNotif = useNotification("This is Notification Title" , {body : "This is Notification body" });
+
   return (
     <div className="App" style={{ height: "1000vh" }}>
       <div>
@@ -140,10 +146,15 @@ function App() {
         <h1>{onLine ? "Online" : "Offline"}</h1>
       </div>
       <div ref={element}>
+        <h1>useFullscreen</h1>
         <img src={wallpaper} style={{ width: "300px" }} alt="img"></img>
         <button onClick={exitFUll}>exitFUll</button>
+        <button onClick={triggerFull}>ImgFullScreen</button>
       </div>
-      <button onClick={triggerFull}>ImgFullScreen</button>
+      <div>
+        <h1>useNotification</h1>
+        <button onClick={triggerNotif}>triggerNotif</button>
+      </div>
     </div>
   );
 }
