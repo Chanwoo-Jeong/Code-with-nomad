@@ -13,6 +13,7 @@ import useScroll from "./Hooks/useScroll";
 import wallpaper from "./images/wallpaper.jpg";
 import useFullscreen from "./Hooks/useFullscreen";
 import useNotification from "./Hooks/useNotification";
+import useAxios from "./Hooks/useAxios";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -26,8 +27,6 @@ const content = [
     content: "Im the content of the section2",
   },
 ];
-
-
 
 function App() {
   //useInput.js
@@ -89,7 +88,14 @@ function App() {
   const { element, triggerFull, exitFUll } = useFullscreen();
 
   //useNotification.js
-  const triggerNotif = useNotification("This is Notification Title" , {body : "This is Notification body" });
+  const triggerNotif = useNotification("This is Notification Title", {
+    body: "This is Notification body",
+  });
+
+  //useAxios.js
+  const { loading, error, data, refetch } = useAxios({
+    url: "https://yts.mx/api/v2/list_movies.json",
+  });
 
   return (
     <div className="App" style={{ height: "1000vh" }}>
@@ -154,6 +160,12 @@ function App() {
       <div>
         <h1>useNotification</h1>
         <button onClick={triggerNotif}>triggerNotif</button>
+      </div>
+      <div>
+        <h1>useAxios</h1>
+        <h2>{data && data.status}</h2>
+        <h2>{loading && "Loading"}</h2>
+        <button onClick={refetch}>refetch</button>
       </div>
     </div>
   );
