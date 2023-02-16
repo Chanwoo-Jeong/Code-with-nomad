@@ -10,6 +10,9 @@ import useBeforeLeave from "./Hooks/useBeforeLeave";
 import useFadeIn from "./Hooks/useFadeIn";
 import useNetwork from "./Hooks/useNetwork";
 import useScroll from "./Hooks/useScroll";
+import wallpaper from "./images/wallpaper.jpg";
+import useFullscreen from "./Hooks/useFullscreen";
+
 import { useEffect, useRef, useState } from "react";
 
 const content = [
@@ -22,9 +25,6 @@ const content = [
     content: "Im the content of the section2",
   },
 ];
-
-
-
 
 function App() {
   //useInput.js
@@ -80,12 +80,17 @@ function App() {
   const onLine = useNetwork(handleNetworkChange);
 
   //useScroll.js
-  const {y} = useScroll()
+  const { y } = useScroll();
+
+  //useFullscreen.js
+  const { element, triggerFull, exitFUll } = useFullscreen();
 
   return (
-    <div className="App" style={{height : "1000vh"}}>
+    <div className="App" style={{ height: "1000vh" }}>
       <div>
-        <h1 style={{position : "fixed" ,color : y > 100 ? "red" : "blue"}}>useScroll</h1>      
+        <h1 style={{ position: "fixed", color: y > 100 ? "red" : "blue" }}>
+          useScroll
+        </h1>
       </div>
       <div>
         <h1>useInput</h1>
@@ -134,6 +139,11 @@ function App() {
       <div>
         <h1>{onLine ? "Online" : "Offline"}</h1>
       </div>
+      <div ref={element}>
+        <img src={wallpaper} style={{ width: "300px" }} alt="img"></img>
+        <button onClick={exitFUll}>exitFUll</button>
+      </div>
+      <button onClick={triggerFull}>ImgFullScreen</button>
     </div>
   );
 }
