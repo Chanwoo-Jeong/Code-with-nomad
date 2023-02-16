@@ -9,6 +9,7 @@ import usePreventLeave from "./Hooks/usePreventLeave";
 import useBeforeLeave from "./Hooks/useBeforeLeave";
 import useFadeIn from "./Hooks/useFadeIn";
 import useNetwork from "./Hooks/useNetwork";
+import useScroll from "./Hooks/useScroll";
 import { useEffect, useRef, useState } from "react";
 
 const content = [
@@ -21,6 +22,9 @@ const content = [
     content: "Im the content of the section2",
   },
 ];
+
+
+
 
 function App() {
   //useInput.js
@@ -75,8 +79,14 @@ function App() {
   };
   const onLine = useNetwork(handleNetworkChange);
 
+  //useScroll.js
+  const {y} = useScroll()
+
   return (
-    <div className="App">
+    <div className="App" style={{height : "1000vh"}}>
+      <div>
+        <h1 style={{position : "fixed" ,color : y > 100 ? "red" : "blue"}}>useScroll</h1>      
+      </div>
       <div>
         <h1>useInput</h1>
         <h3>Hello {count}</h3>
