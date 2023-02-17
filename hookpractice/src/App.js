@@ -15,9 +15,10 @@ import useFullscreen from "./Hooks/useFullscreen";
 import useNotification from "./Hooks/useNotification";
 import useAxios from "./Hooks/useAxios";
 
-import Context from "./Context";
+import Context from "./Hooks/Context";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
+import { act } from "react-dom/test-utils";
 
 const content = [
   {
@@ -99,6 +100,19 @@ function App() {
     url: "https://yts.mx/api/v2/list_movies.json",
   });
 
+  //useReducer.js
+  const [howMany , setHowMany] = useState (1)
+  const changeHowmany = (event) => {
+    setHowMany(Number(event.target.value))
+  }
+  const intReducer = (oldInt , action) => {
+    if(action.type === "up") return oldInt + action.size
+    if(action.type === "reset") return oldInt = 0
+    if(action.type === "down") return oldInt - action.size
+  }
+  const [Int , intDispatch] = useReducer(intReducer,0)
+  
+
   return (
     <div className="App" style={{ height: "1000vh" }}>
       <div>
@@ -171,7 +185,14 @@ function App() {
       </div>
 
       <Context />
-      
+      <div>
+        <h1>useReducer</h1>
+        <h2>{Int}</h2>
+        <input value={howMany} onChange={changeHowmany}></input>
+        <button onClick={()=>intDispatch({type : "up" , size : howMany})}>+</button>
+        <button onClick={()=>intDispatch({type : "reset" , size : howMany})}>0</button>
+        <button onClick={()=>intDispatch({type : "down" , size : howMany})}>-</button>
+      </div>
     </div>
   );
 }
