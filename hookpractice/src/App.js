@@ -15,6 +15,8 @@ import useFullscreen from "./Hooks/useFullscreen";
 import useNotification from "./Hooks/useNotification";
 import useAxios from "./Hooks/useAxios";
 
+import Context from "./Context";
+
 import { useEffect, useRef, useState } from "react";
 
 const content = [
@@ -167,6 +169,9 @@ function App() {
         <h2>{loading && "Loading"}</h2>
         <button onClick={refetch}>refetch</button>
       </div>
+
+      <Context />
+      
     </div>
   );
 }
